@@ -1,6 +1,6 @@
 
 
-export default function FloatingLabelForm() {
+export default function CreateForm() {
   return (
     <form className="max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
