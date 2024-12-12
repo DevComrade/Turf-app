@@ -88,7 +88,7 @@ const Sidebar = () => {
           <div key={index} className="mb-2 relative">
             <button
               onClick={() => toggleSubmenu(item.title)}
-              className={`w-full flex items-center px-4 py-3 hover:bg-gray-700 transition-colors
+              className={`w-full flex items-center px-4 py-3 hover:bg-white hover:text-black transition-colors
                 ${openSubmenus[item.title] ? 'bg-gray-700' : ''}`}
               onMouseEnter={() => item.title === 'Dashboard' && setShowDashboardDropdown(true)}
               onMouseLeave={() => item.title === 'Dashboard' && setShowDashboardDropdown(false)}
@@ -120,11 +120,11 @@ const Sidebar = () => {
 
             {/* Regular Submenu */}
             {isOpen && item.submenu && openSubmenus[item.title] && (
-              <div className="bg-gray-900">
+              <div className="bg-black">
                 {item.submenu.map((subItem, subIndex) => (
                   <button
                     key={subIndex}
-                    className="w-full flex items-center px-12 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+                    className="w-full flex items-center px-12 py-2 text-gray-300 hover:bg-red-700 hover:text-white transition-colors"
                   >
                     {subItem.title}
                   </button>
