@@ -9,15 +9,10 @@ import Sidebar from "../LayoutFile/Sidebar";
 
 const Home = () => {
   return (
-    <div>
-    
-<Navbar/>
-<Sidebar/>
-{/* <NotificationDropdown/>
-<ProfileDropdown/> */}
-
-
-    </div>
+    <>
+      <Navbar />
+      <Sidebar />
+    </>
   );
 };
 

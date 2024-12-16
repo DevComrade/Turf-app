@@ -1,27 +1,23 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, LayoutDashboard, Users, Settings, Box, ShoppingCart, FileText, Bell } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import DashboardDropdown from '../../Components/Dashboard/DropdownDashboard';
-
-
 
 const menuItems = [
   {
     title: 'Dashboard',
     icon: <LayoutDashboard className="w-5 h-5" />,
+    path: '/Admin/'
   },
   {
     title: 'Adminstration',
     icon: <Users className="w-5 h-5" />,
-    
     submenu: [
-      { title: 'User Type', path: '/userType' },
-      { title: 'User Creation', path:'/userCreation' },
-      { title: 'User Logs', path:'/userLogs' },
-
+      { title: 'User Type', path: '/Admin/UserType' },
+      { title: 'User Creation', path: '/userCreation' },
+      { title: 'User Logs', path: '/userLogs' },
     ],
-
   },
-
   {
     title: 'Products',
     icon: <Box className="w-5 h-5" />,
@@ -54,8 +50,6 @@ const menuItems = [
   },
 ];
 
-
-
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState({});
@@ -86,27 +80,33 @@ const Sidebar = () => {
       <nav className="mt-8">
         {menuItems.map((item, index) => (
           <div key={index} className="mb-2 relative">
-            <button
-              onClick={() => toggleSubmenu(item.title)}
-              className={`w-full flex items-center px-4 py-3 hover:bg-white hover:text-black transition-colors
+            {item.title === 'Dashboard' ? (
+              <Link
+                to={item.path}
+                className="w-full flex items-center px-4 py-3 hover:bg-gray-700 transition-colors"
+              >
+                <span className="mr-4">{item.icon}</span>
+                {isOpen && <span className="flex-1 text-left">{item.title}</span>}
+              </Link>
+            ) : (
+              <button
+                onClick={() => toggleSubmenu(item.title)}
+                className={`w-full flex items-center px-4 py-3 hover:bg-gray-700 transition-colors
                 ${openSubmenus[item.title] ? 'bg-gray-700' : ''}`}
-              onMouseEnter={() => item.title === 'Dashboard' && setShowDashboardDropdown(true)}
-              onMouseLeave={() => item.title === 'Dashboard' && setShowDashboardDropdown(false)}
-            >
-              <span className="mr-4">{item.icon}</span>
-              {isOpen && (
-                <>
-                  <span className="flex-1 text-left">{item.title}</span>
-                  {item.submenu && (
-                    <ChevronDown
-                      className={`w-5 h-5 transform transition-transform ${
-                        openSubmenus[item.title] ? 'rotate-180' : ''
-                      }`}
-                    />
-                  )}
-                </>
-              )}
-            </button>
+              >
+                <span className="mr-4">{item.icon}</span>
+                {isOpen && (
+                  <>
+                    <span className="flex-1 text-left">{item.title}</span>
+                    {item.submenu && (
+                      <ChevronDown
+                        className={`w-5 h-5 transform transition-transform ${openSubmenus[item.title] ? 'rotate-180' : ''}`}
+                      />
+                    )}
+                  </>
+                )}
+              </button>
+            )}
 
             {/* Show Dashboard Dropdown */}
             {item.title === 'Dashboard' && showDashboardDropdown && isOpen && (
@@ -120,14 +120,15 @@ const Sidebar = () => {
 
             {/* Regular Submenu */}
             {isOpen && item.submenu && openSubmenus[item.title] && (
-              <div className="bg-black">
+              <div className="bg-gray-900">
                 {item.submenu.map((subItem, subIndex) => (
-                  <button
-                    key={subIndex}
-                    className="w-full flex items-center px-12 py-2 text-gray-300 hover:bg-red-700 hover:text-white transition-colors"
+                  <Link
+                    key={`${subItem.title}-${subIndex}`}
+                    to={subItem.path}
+                    className="w-full flex items-center px-12 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
                   >
                     {subItem.title}
-                  </button>
+                  </Link>
                 ))}
               </div>
             )}
@@ -137,4 +138,5 @@ const Sidebar = () => {
     </div>
   );
 };
+
 export default Sidebar;
