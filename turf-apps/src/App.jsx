@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AdminPanel from './Admin/Layouts/Templates/AdminPanel';
 import CustomerPanel from './Customer/Layouts/Templates/CustomerPanel';
 import SellerPanel from './Seller/Layouts/Templates/SellerPanel';
-import Sidebar from './Admin/Layouts/LayoutFile/Sidebar';
 
 // Customer
 import CustomerDashboard from './Customer/Pages/Dashboard/index';
