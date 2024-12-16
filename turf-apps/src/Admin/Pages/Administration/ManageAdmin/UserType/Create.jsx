@@ -1,164 +1,53 @@
-import  { useState } from 'react';
 
-const CreateForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    company: '',
-    phone: '',
-    website: '',
-    visitors: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    remember: false,
-  });
 
-  const handleChange = (e) => {
-    const { id, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [id]: type === 'checkbox' ? checked : value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
-
+export default function create() {
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="grid gap-6 mb-6 md:grid-cols-2">
-        <div>
-          <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-          <input
-            type="text"
-            id="firstName"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="John"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
-          <input
-            type="text"
-            id="lastName"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Doe"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-          <input
-            type="text"
-            id="company"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Flowbite"
-            value={formData.company}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="123-45-678"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="website" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
-          <input
-            type="url"
-            id="website"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="flowbite.com"
-            value={formData.website}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="visitors" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unique visitors (per month)</label>
-          <input
-            type="number"
-            id="visitors"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value={formData.visitors}
-            onChange={handleChange}
-            required
-          />
-        </div>
+
+    <main className=" flex items-center justify-center bg-gray-100 p-4">
+    <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold mb-6 text-center">Registration Form</h1>
+    <form className="max-w-4xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+        {[
+          { id: 'floating_email', label: 'Email address', type: 'email', required: true },
+          { id: 'floating_password', label: 'Password', type: 'password', required: true },
+          { id: 'floating_repeat_password', label: 'Confirm password', type: 'password', required: true },
+          { id: 'floating_first_name', label: 'First name', type: 'text', required: true },
+          { id: 'floating_last_name', label: 'Last name', type: 'text', required: true },
+          { id: 'floating_address1', label: 'Address 1', type: 'text', required: true, colSpan: 'full' },
+          { id: 'floating_address2', label: 'Address 2 (optional)', type: 'text', colSpan: 'full' },
+          { id: 'floating_state', label: 'State', type: 'text', required: true },
+          { id: 'floating_zipcode', label: 'Zip Code', type: 'text', required: true },
+          { id: 'floating_phone', label: 'Phone number (123-456-7890)', type: 'tel', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', required: true },
+          { id: 'floating_company', label: 'Company (Ex. Google)', type: 'text', required: true },
+        ].map((field, index) => (
+          <div key={index} className={`relative z-0 w-full mb-5 group ${field.colSpan === 'full' ? 'col-span-full' : ''}`}>
+            <input
+              type={field.type}
+              name={field.id}
+              id={field.id}
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required={field.required}
+              pattern={field.pattern}
+            />
+            <label
+              htmlFor={field.id}
+              className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              {field.label}
+            </label>
+          </div>
+        ))}
       </div>
-      <div className="mb-6">
-        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-        <input
-          type="email"
-          id="email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="john.doe@company.com"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-        <input
-          type="password"
-          id="password"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="•••••••••"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="•••••••••"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="flex items-start mb-6">
-        <div className="flex items-center h-5">
-          <input
-            id="remember"
-            type="checkbox"
-            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-            checked={formData.remember}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-          I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.
-        </label>
-      </div>
-      <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <button
+        type="submit"
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+      >
         Submit
       </button>
     </form>
+    </div>
+    </main>
   );
-};
-
-export default CreateForm;
+}

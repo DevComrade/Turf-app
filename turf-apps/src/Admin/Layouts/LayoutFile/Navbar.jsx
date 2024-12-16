@@ -15,13 +15,25 @@ const Navbar = () => {
     document.documentElement.classList.toggle('dark');
   };
 
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleNotificationsToggle = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  const handleProfileToggle = () => {
+    setShowProfile(!showProfile);
+  };
+
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-md">
       <div className="max-w-full mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={handleMobileMenuToggle}
             className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <Menu className="h-6 w-6 text-gray-600 dark:text-gray-200" />
@@ -53,7 +65,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-                onClick={() => setShowNotifications(!showNotifications)}
+                onClick={handleNotificationsToggle}
               >
                 <Bell className="h-5 w-5 text-gray-600 dark:text-gray-200" />
               </button>
@@ -64,7 +76,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 className="flex items-center space-x-3 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-                onClick={() => setShowProfile(!showProfile)}
+                onClick={handleProfileToggle}
               >
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -88,13 +100,13 @@ const Navbar = () => {
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
             <button
-              onClick={() => setShowNotifications(!showNotifications)}
+              onClick={handleNotificationsToggle}
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               <Bell className="h-5 w-5" />
             </button>
             <button
-              onClick={() => setShowProfile(!showProfile)}
+              onClick={handleProfileToggle}
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               Profile
