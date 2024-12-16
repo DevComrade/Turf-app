@@ -15,8 +15,8 @@ const menuItems = [
     icon: <Users className="w-5 h-5" />,
     submenu: [
       { title: 'User Type', path: '/Admin/UserType' },
-      { title: 'User Creation', path: '/userCreation' },
-      { title: 'User Logs', path: '/userLogs' },
+      { title: 'User Creation', path: 'Admin/userCreation' },
+      { title: 'User Logs', path: 'Admin/userLogs' },
     ],
   },
   {
