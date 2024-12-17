@@ -8,6 +8,7 @@ const index = () => {
     navigate('/Admin/UserType/Create');
   };
 
+
   const handleClickEdit = () => {
     // Navigate to the desired path
     navigate('/Admin/UserType/Edit');
